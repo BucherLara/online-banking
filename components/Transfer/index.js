@@ -6,10 +6,26 @@ import {
 } from "../FormLogin/index.js";
 import { useState } from "react";
 import { Headline, StyledGiPiggyBank } from "@/pages/index.js";
+
+
 export default function Transfer() {
   const [name, setName] = useState();
   const [iban, setIban] = useState();
   const [amount, setAmount] = useState();
+
+  async function handler(event) {
+    event.preventDefault();
+    const response = await fetch("/api/transfer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, iban, amount }),
+    });
+    const data = await response.json();
+    
+    console.log(data)
+  }
 
   return (
     <form>
@@ -54,7 +70,7 @@ export default function Transfer() {
           value={amount}
         />
 
-        <StyledButton type="submit">Send</StyledButton>
+        <StyledButton type="submit" onClick={handler}>Send</StyledButton>
       </StyledFieldset>
     </form>
   );
