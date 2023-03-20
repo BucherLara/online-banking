@@ -2,6 +2,7 @@ import Head from "next/head";
 import { GiPiggyBank } from "react-icons/gi";
 import styled from "styled-components";
 import FormLogin from "components/FormLogin";
+import { setup } from "lib/csrf";
 
 export default function Home() {
   return (
@@ -36,3 +37,10 @@ export const Headline = styled.h1`
 export const StyledGiPiggyBank = styled(GiPiggyBank)`
   margin-right: 0.5em;
 `;
+
+
+export const getServerSideProps = setup(async ({ req, res }) => {
+  return {
+    props: {},
+  };
+});
