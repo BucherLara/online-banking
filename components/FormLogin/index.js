@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useRouter } from "next/router";
+
 export default function FormLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+
   async function handler(event) {
     event.preventDefault();
     const response = await fetch("/api/login", {
@@ -19,6 +21,7 @@ export default function FormLogin() {
       router.push("/transfer");
     }
   }
+
   return (
     <form>
       <StyledFieldset>
