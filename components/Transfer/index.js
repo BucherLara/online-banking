@@ -2,13 +2,11 @@ import {
   StyledButton,
   StyledInput,
   StyledFieldset,
-  StyledLegend,
 } from "../FormLogin/index.js";
 import { useState } from "react";
 import { Headline, StyledGiPiggyBank } from "@/pages/index.js";
 
-
-export default function Transfer() {
+export default function Transfer(props) {
   const [name, setName] = useState();
   const [iban, setIban] = useState();
   const [amount, setAmount] = useState();
@@ -23,8 +21,8 @@ export default function Transfer() {
       body: JSON.stringify({ name, iban, amount }),
     });
     const data = await response.json();
-    
-    console.log(data)
+
+    console.log(data);
   }
 
   return (
@@ -70,7 +68,9 @@ export default function Transfer() {
           value={amount}
         />
 
-        <StyledButton type="submit" onClick={handler}>Send</StyledButton>
+        <StyledButton type="submit" onClick={handler}>
+          Send
+        </StyledButton>
       </StyledFieldset>
     </form>
   );

@@ -1,4 +1,6 @@
-export default function handler(req, res) {
+import { csrf } from "../../../lib/csrf"; 
+
+const handler = (req, res) => {
     // Check that the request method is POST
     if (req.method !== 'POST') {
       res.status(405).json({ error: 'Method Not Allowed' });
@@ -14,12 +16,11 @@ export default function handler(req, res) {
     // Parse the JSON data from the request body
     const { name, iban, amount } = req.body;
   
-    // TODO: Implement transfer logic
-
     console.log(name, iban, amount)
-    console.log(req.cookies.session);
   
     // Return a success message
     res.status(200).json({ name, iban, amount });
   }
   
+
+  export default csrf(handler);
